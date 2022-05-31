@@ -165,8 +165,10 @@ const App = () => {
           startDate={new Date(startDate)}
           selection={schedule}
           onChange={setSchedule}
+          locale="es"
           hourlyChunks={hourlyChunks}
           timeFormat="h:mma"
+          dateFormat="eeee"
           selectionScheme={selectionScheme}
         />
       </ScheduleSelectorCard>

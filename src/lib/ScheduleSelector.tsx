@@ -244,14 +244,17 @@ export default class ScheduleSelector extends React.Component<PropsType, StateTy
 
     this._currentLocale = id
 
+    // TODO: Works when id is not inside the string and it is a fixed value. Seems to be a problem with webpack
     this._asyncLocaleImportRequest = import(
       /* webpackMode: "lazy", webpackChunkName: "df-[index]", webpackExclude: /_lib/ */
       `date-fns/locale/${id}/index.js`
     )
       .then(locale => {
+        const localeObj: Locale = locale.default || locale
+        console.log(locale)
         this._asyncLocaleImportRequest = null
         if (id === this._currentLocale) {
-          this.setState({ locale: locale.default })
+          this.setState({ locale: localeObj })
         }
       })
       .catch(e => {
